@@ -2,7 +2,7 @@ DELIMITER $$
 
 CREATE PROCEDURE getPeople()
 BEGIN
-	SELECT * FROm Country;
+	SELECT * FROM Country;
 	SELECT * FROM city;
 END $$
 
@@ -23,13 +23,14 @@ CREATE PROCEDURE countCities()
 BEGIN
 	DECLARE total INT DEFAULT 0;
     
-    SELECT COUNT(*) INTO total from city;
+    SELECT COUNT(*) INTO total FROM city;
     SELECT total;
 END $$;
 
 DELIMITER ;
 
 CALL countCities();
+DROP PROCEDURE IF EXISTS countCities();
 
 /* In this exercise your task is to sum up the total number of cities (CITY database table) 
 and the total number of countries (COUNTRY database table). */
@@ -50,6 +51,7 @@ END $$
 DELIMITER ;
 
 CALL countAll;
+DROP PROCEDURE IF EXISTS countAll();
 
 -- dealing with IN and OUT parameters 
 DELIMITER $$
@@ -69,7 +71,9 @@ END $$
 DELIMITER ;
 
 CALL numOfCities('USA', @total);
+
 SELECT @total;
+DROP PROCEDURE IF EXISTS numOfCities();
 
 /* Exercise
 So far we have seen how to define stored procedures - with variables and parameters. 
@@ -99,6 +103,7 @@ END $$
 DELIMITER ;
 
 CALL exercise('USA');
+DROP PROCEDURE IF EXISTS exercise;
 
 -- Using loops with stored procedures
 
@@ -128,7 +133,7 @@ DELIMITER ;
 CALL labelPopulation("HUN", @label);
 SELECT @label;
 
-Drop procedure labelPopulation;
+DROP PROCEDURE labelPopulation;
 
 DELIMITER $$
 
@@ -157,10 +162,9 @@ BEGIN
     
 DELIMITER ;
 
-
-    
 CALL loopExampl();
 DROP PROCEDURE loopExampl;
+
 
 -- USING WHILE LOOPS IN SQL PROCEDURES
 DELIMITER $$
@@ -182,6 +186,7 @@ END $$
 DELIMITER ;
 
 CALL whileExample();
+DROP PROCEDURE whileExample();
 
 -- Returning multiple values from stored procedures
 
@@ -206,7 +211,8 @@ END $$
 DELIMITER ;
 
 CALL multiValues(@c1, @c2);
-SELECT @c1, @c2;
+SELECT @c1, @c2)
+DROP PROCEDURE mulltiValues;
 
 -- DEALING WITH CURSORS
 SHOW PROCEDURE STATUS;
@@ -247,6 +253,6 @@ END$$
 
 DELIMITER ;
 
-DROP procedure city_list;
+DROP PROCEDURE city_list;
 
 
